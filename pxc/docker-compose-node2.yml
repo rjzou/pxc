@@ -1,0 +1,19 @@
+version: "3"
+services:
+  node2:
+    image: percona/percona-xtradb-cluster:8.0.22
+    restart: always
+    container_name: node2
+    volumes:
+      - /home/rjzou/pxc/cert:/cert
+      - /home/rjzou/pxc/config:/etc/percona-xtradb-cluster.conf.d
+      - /home/rjzou/pxc/mysql/data:/var/lib/mysql
+    ports:
+      - 3309:3306
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=123456
+      - CLUSTER_NAME=PXC
+      - XTRABACKUP_PASSWORD=123456
+      - CLUSTER_JOIN=192.168.3.38
+    network_mode: "host"

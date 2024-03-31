@@ -1,0 +1,13 @@
+version: "3"
+services:  
+  pxc-haproxy:
+    image: haproxy:2.7.3
+    restart: always
+    container_name: pxc-haproxy
+    volumes:
+      - /home/rjzou/pxc/haproxy:/usr/local/etc/haproxy
+    ports:
+      - 4001:4001
+      - 4002:4002
+    network_mode: "host"
+    privileged: true
